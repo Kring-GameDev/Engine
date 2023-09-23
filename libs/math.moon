@@ -48,5 +48,9 @@ class Vector2
     __shl: (v) =>
        math.abs( (@x - v.x) + (@y - v.y) )
 
+    -- Получение длинны
+    length: =>
+        math.sqrt((@x^2) + (@y^2))
+
 
 {:lerp, :Vector2}

@@ -1,4 +1,6 @@
 Camera = require "libs.camera"
+Entity = require "libs.entity"
+
 w, h = love.graphics.getWidth(), love.graphics.getHeight()
 Camera.s = 0.3
 Camera.v = 0.1

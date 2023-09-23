@@ -1,6 +1,6 @@
-Camera = {x: 0, y: 0, tx: 0, ty: 0, ox: 0, oy: 0, s: 1, v: 0.05, mouse: {}}
+import lerp from require "libs.math"
 
-lerp = (a, b, t) -> a * (1 - t) + b * t
+Camera = {x: 0, y: 0, tx: 0, ty: 0, ox: 0, oy: 0, s: 1, v: 0.05, mouse: {}}
 
 Camera.attach = ->
     love.graphics.push()

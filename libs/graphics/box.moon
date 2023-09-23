@@ -9,7 +9,7 @@ class box
         @ent = Entity(Coord, Size, false)
     
     render: (type = "fill") => 
-        love.graphics.rectangle("fill", 256, 256, 256, 256)
+        love.graphics.rectangle(type, 256, 256, 256, 256)
 
 
 box

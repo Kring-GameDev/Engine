@@ -7,7 +7,6 @@ class Entity
     @size       = Vector2()
     @static     = false
 
-
     new: (coord = Vector2(), size = Vector2(), static = false) =>
         -- Инцилизация начальный параметров
         @coord = coord

@@ -14,6 +14,8 @@ ps = {
     y: 0
 }
 
+1
+
 lock = false
 
 tail = {0,0, 0,0}

@@ -1,4 +1,4 @@
-Camera = require "camera"
+Camera = require "libs.camera"
 w, h = love.graphics.getWidth(), love.graphics.getHeight()
 Camera.s = 0.3
 Camera.v = 0.1

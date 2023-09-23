@@ -9,8 +9,7 @@ class Entity
 
 
     new: (coord = Vector2(), size = Vector2(), static = false) => 
-        assert type(static) == "bool" 
-
+        
         -- Инцилизация начальный параметров
         @coord = coord
         @size = size

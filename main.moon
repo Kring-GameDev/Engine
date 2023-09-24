@@ -1,9 +1,9 @@
 import lerp, Vector2 from require "libs.math"
-import Entity from require "libs.entity"
-import Event, EventList from require "libs.event"
+import Entity from require "libs.graphics.entity"
+import Event, EventList from require "libs.util.event"
 Event.init()
-Camera = require "libs.camera"
-Player = require "libs.graphics.player"
+Camera = require "libs.graphics.camera"
+Player = require "libs.graphics.base.player"
 
 user = Player(Vector2(0, 256), Vector2(30, 30))
 

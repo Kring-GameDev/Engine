@@ -1,5 +1,5 @@
 import Vector2 from require "libs.math"
-Entity = require "libs.entity"
+Entity = require "libs.graphics.entity"
 
 
 class box 

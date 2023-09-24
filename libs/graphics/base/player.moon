@@ -1,5 +1,5 @@
 import Vector2 from require "libs.math"
-import Entity from require "libs.entity"
+import Entity from require "libs.graphics.entity"
 
 
 class player

@@ -1,10 +1,8 @@
 import Vector2 from require "libs.math"
-Entity = require "libs.entity"
+import Entity from require "libs.entity"
 
 
 class player
-
-    @ent = Entity(Vector2!, Vector2!, false)
     new: (Coord, Size) =>
         @ent = Entity(Coord, Size, false)
 

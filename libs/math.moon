@@ -52,5 +52,14 @@ class Vector2
     length: =>
         math.sqrt((@x^2) + (@y^2))
 
+    normalize: =>
+        locLength = self\length()
+        inv_length = (1 / locLength)
+        @x *= inv_length
+        @y *= inv_length
+        @z *= inv_length
+        self
+        
+
 
 {:lerp, :Vector2}

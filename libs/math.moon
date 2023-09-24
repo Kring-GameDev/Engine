@@ -66,13 +66,5 @@ class Vector2
         inv_length = (1 / locLength)
         @x *= inv_length
         @y *= inv_length
-<<<<<<< HEAD
-        @z *= inv_length
-        self
-        
-
-=======
-        self
->>>>>>> 763ec79f60c5071e1cc247388afad27205068fc9
 
 {:lerp, :Vector2}

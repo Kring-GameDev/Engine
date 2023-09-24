@@ -1,36 +1,36 @@
 EventList = {
-    on_draw:        {}
-    on_update:      {}
-    on_keypressed:  {}
-    on_keyreleased: {}
+    draw:        {}
+    update:      {}
+    keypressed:  {}
+    keyreleased: {}
 
-    on_gamepadpressed:   {}
-    on_gamepadreleased:  {}
-    on_joystickpressed:  {}
-    on_joystickreleased: {}
-    on_joystickadded:    {}
-    on_joystickremoved:  {}
+    gamepadpressed:   {}
+    gamepadreleased:  {}
+    joystickpressed:  {}
+    joystickreleased: {}
+    joystickadded:    {}
+    joystickremoved:  {}
 
-    on_mousepressed:  {}
-    on_mousereleased: {}
-    on_mousemoved:    {}
-    on_wheelmoved:    {}
+    mousepressed:  {}
+    mousereleased: {}
+    mousemoved:    {}
+    wheelmoved:    {}
 
-    on_threaderror: {}
+    threaderror: {}
 
-    on_touchpressed:  {}
-    on_touchreleased: {}
-    on_touchmoved:    {}
+    touchpressed:  {}
+    touchreleased: {}
+    touchmoved:    {}
 
-    on_resize:     {}
-    on_focus:      {}
-    on_mousefocus: {}
-    on_visible:    {}
+    resize:     {}
+    focus:      {}
+    mousefocus: {}
+    visible:    {}
 
-    on_textinput: {}
+    textinput: {}
 }
 
-Event = { defines: {} }
+Event = {}
 
 Event.on_event = (event_name, callback) ->
     if EventList[event_name] == nil 
@@ -43,98 +43,95 @@ Event.on_event = (event_name, callback) ->
 
 Event.init = ->
     love.draw = (...) ->
-        for k, v in pairs(EventList.on_draw)
+        for k, v in pairs(EventList.draw)
             v(...)
 
     love.update = (...) ->
-        for k, v in pairs(EventList.on_update)
+        for k, v in pairs(EventList.update)
             v(...)
 
     love.keypressed = (...) ->
-        for k, v in pairs(EventList.on_keypressed)
+        for k, v in pairs(EventList.keypressed)
             v(...)
 
     love.keyreleased = (...) ->
-        for k, v in pairs(EventList.on_keyreleased)
+        for k, v in pairs(EventList.keyreleased)
             v(...)
 
     love.gamepadpressed = (...) ->
-        for k, v in pairs(EventList.on_gamepadpressed)
+        for k, v in pairs(EventList.gamepadpressed)
             v(...)
 
     love.gamepadreleased = (...) ->
-        for k, v in pairs(EventList.on_gamepadreleased)
+        for k, v in pairs(EventList.gamepadreleased)
             v(...)
 
     love.joystickpressed = (...) ->
-        for k, v in pairs(EventList.on_joystickpressed)
+        for k, v in pairs(EventList.joystickpressed)
             v(...)
 
     love.joystickreleased = (...) ->
-        for k, v in pairs(EventList.on_joystickreleased)
+        for k, v in pairs(EventList.joystickreleased)
             v(...)
 
     love.joystickadded = (...) ->
-        for k, v in pairs(EventList.on_joystickadded)
+        for k, v in pairs(EventList.joystickadded)
             v(...)
 
     love.joystickremoved = (...) ->
-        for k, v in pairs(EventList.on_joystickremoved)
+        for k, v in pairs(EventList.joystickremoved)
             v(...)
 
     love.mousepressed = (...) ->
-        for k, v in pairs(EventList.on_mousepressed)
+        for k, v in pairs(EventList.mousepressed)
             v(...)
 
     love.mousereleased = (...) ->
-        for k, v in pairs(EventList.on_mousereleased)
+        for k, v in pairs(EventList.mousereleased)
             v(...)
 
     love.mousemoved = (...) ->
-        for k, v in pairs(EventList.on_mousemoved)
+        for k, v in pairs(EventList.mousemoved)
             v(...)
 
     love.wheelmoved = (...) ->
-        for k, v in pairs(EventList.on_wheelmoved)
+        for k, v in pairs(EventList.wheelmoved)
             v(...)
 
     love.threaderror = (...) ->
-        for k, v in pairs(EventList.on_threaderror)
+        for k, v in pairs(EventList.threaderror)
             v(...)
 
     love.touchpressed = (...) ->
-        for k, v in pairs(EventList.on_touchpressed)
+        for k, v in pairs(EventList.touchpressed)
             v(...)
 
     love.touchreleased = (...) ->
-        for k, v in pairs(EventList.on_touchreleased)
+        for k, v in pairs(EventList.touchreleased)
             v(...)
 
     love.touchmoved = (...) ->
-        for k, v in pairs(EventList.on_touchmoved)
+        for k, v in pairs(EventList.touchmoved)
             v(...)
 
     love.resize = (...) ->
-        for k, v in pairs(EventList.on_resize)
+        for k, v in pairs(EventList.resize)
             v(...)
 
     love.focus = (...) ->
-        for k, v in pairs(EventList.on_focus)
+        for k, v in pairs(EventList.focus)
             v(...)
 
     love.mousefocus = (...) ->
-        for k, v in pairs(EventList.on_mousefocus)
+        for k, v in pairs(EventList.mousefocus)
             v(...)
 
     love.visible = (...) ->
-        for k, v in pairs(EventList.on_visible)
+        for k, v in pairs(EventList.visible)
             v(...)
 
     love.textinput = (...) ->
-        for k, v in pairs(EventList.on_textinput)
+        for k, v in pairs(EventList.textinput)
             v(...)
-
-    for k, v in pairs EventList
-        Event.defines[l\sub(4)] = k
 
 { :Event, :EventList }

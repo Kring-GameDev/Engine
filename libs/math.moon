@@ -10,7 +10,7 @@ class Vector2
 
 
     -- Инцилизация объекта
-    new: (x = 5, y = 0) =>
+    new: (x = 0, y = 0) =>
         @x = x
         @y = y
         @xy = {x: x, y: y}
@@ -18,21 +18,34 @@ class Vector2
 
     -- (+) Сумма
     __add: (v) =>
-       Vector2(@x + v.x, @y + v.y)
+        if type(v) == "table"
+            Vector2(@x + v.x, @y + v.y)
+        elseif type(v) == "number"
+            Vector2(@x + v, @y + v)
 
     -- (-) Разность
     __sub: (v) =>
-       Vector2(@x - v.x, @y - v.y)
+        if type(v) == "table"
+            Vector2(@x - v.x, @y - v.y)
+        elseif type(v) == "number"
+            Vector2(@x - v, @y - v)
     
     -- (/) Частное
     __div: (v) =>
-       Vector2(@x / v.x, @y / v.y)
+        if type(v) == "table"
+            Vector2(@x / v.x, @y / v.y)
+        elseif type(v) == "number"
+            Vector2(@x / v, @y / v)
 
     -- (*) Произведение
     __mul: (v) =>
-       Vector2(@x * v.x, @y * v.y)
-
-    -- (==) Равность
+        if type(v) == "table"
+            Vector2(@x * v.x, @y * v.y)
+        elseif type(v) == "number"
+            Vector2(@x * v, @y * v)
+        
+    
+    -- (==) Сравнение
     __eq: (v) =>
        (@x == v.x and @y == v.y)
     
@@ -40,10 +53,6 @@ class Vector2
     __lq: (v) =>
        (@x < v.x and @y < v.y)
     
-    -- (>) сравнине больше
-    __rq: (v) =>
-       (@x > v.x and @y > v.y)
-
     -- (<<) Дистанция
     __shl: (v) =>
        math.abs( (@x - v.x) + (@y - v.y) )
@@ -57,9 +66,13 @@ class Vector2
         inv_length = (1 / locLength)
         @x *= inv_length
         @y *= inv_length
+<<<<<<< HEAD
         @z *= inv_length
         self
         
 
+=======
+        self
+>>>>>>> 763ec79f60c5071e1cc247388afad27205068fc9
 
 {:lerp, :Vector2}

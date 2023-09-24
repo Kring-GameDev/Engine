@@ -60,7 +60,12 @@ class Vector2
     -- Получение длинны
     length: =>
         math.sqrt((@x^2) + (@y^2))
-
+    
+    -- Получение расстояния между этим вектором и следующим
+    distance: (v) =>
+        math.sqrt((v.x - self.x)^2 + (v.y - self.y)^2)
+    
+    -- Нормализация вектора
     normalize: =>
         locLength = self\length()
         inv_length = (1 / locLength)

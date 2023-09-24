@@ -5,7 +5,7 @@ Event.init()
 Camera = require "libs.camera"
 Player = require "libs.graphics.player"
 
-usr = Player(Vector2(256, 256), Vector2(30, 30))
+user = Player(Vector2(256, 256), Vector2(30, 30))
 
 w, h = love.graphics.getWidth(), love.graphics.getHeight()
 
@@ -13,6 +13,8 @@ Camera.v = 0.25
 Camera.setOffset(-w/2, -h/2)
 
 Event.on_event(Event.defines.draw, ->
+    myt = {}
+    Event.defines.cock = true
     Camera.attach!
     user\render!   
     love.graphics.print("on_gay sex machgine"\sub(4))

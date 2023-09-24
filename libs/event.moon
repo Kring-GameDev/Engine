@@ -134,4 +134,7 @@ Event.init = ->
         for k, v in pairs(EventList.on_textinput)
             v(...)
 
+    for k, v in pairs EventList
+        Event.defines[l\sub(4)] = k
+
 { :Event, :EventList }

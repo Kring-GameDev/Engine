@@ -1,27 +1,3 @@
-aabb = (px, py, x, y, w, h) ->
-    px > x and px < x + w and py > y and py < y + h
-
-clamp = (min, val, max) ->
-    val > max and max or val < min and min or val
-
-lerp = (a, b, t) ->
-    a * (1 - t) + b * t
-
-pointOnSegment = (px, py, x1, y1, x2, y2) ->
-    cx, cy = px - x1, py - y1
-    dx, dy = x2 - x1, y2 - y1
-    d = dx * dx + dy * dy
-    if d == 0 then return x1, y1
-    u = (cx * dx + cy * dy) / d
-    if u < 0 then u = 0
-    else if u > 1 then u = 1
-    x1 + u * dx, y1 + u * dy
-
-distance = (x1, y1, x2, y2) ->
-    dx = x1 - x2
-    dy = y1 - y2
-    math.sqrt(dx * dx + dy * dy)
-
 list = (source) ->
     t = source or {}
     setmetatable t,

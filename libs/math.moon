@@ -1,19 +1,31 @@
 lerp = (a, b, t) -> a * (1 - t) + b * t
 
+aabb = (px, py, x, y, w, h) ->
+    px > x and px < x + w and py > y and py < y + h
+
+clamp = (min, val, max) ->
+    val > max and max or val < min and min or val
+--px, py, x1, y1, x2, y2
+pointOnSegment = (TargetVector, FirstVector, SecondVector) ->
+    cx, cy = TargetVector.x - FirstVector.x, TargetVector.y - FirstVector.y
+    dx, dy = SecondVector.x - FirstVector.x, SecondVector.y - FirstVector.y
+    d = dx * dx + dy * dy
+    if d == 0 then return FirstVector.x, FirstVector.y
+    u = (cx * dx + cy * dy) / d
+    if u < 0 then u = 0
+    else if u > 1 then u = 1
+    FirstVector.x + u * dx, FirstVector.y + u * dy
 
 
 class Vector2 
     -- Инцилизиация начальных параметров
     @x = 0
     @y = 0
-    @xy = {x: @x, y: @y} 
-
 
     -- Инцилизация объекта
     new: (x = 0, y = 0) =>
         @x = x
         @y = y
-        @xy = {x: x, y: y}
 
 
     -- (+) Сумма
@@ -43,7 +55,6 @@ class Vector2
             Vector2(@x * v.x, @y * v.y)
         elseif type(v) == "number"
             Vector2(@x * v, @y * v)
-        
     
     -- (==) Сравнение
     __eq: (v) =>
@@ -64,12 +75,24 @@ class Vector2
     -- Получение расстояния между этим вектором и следующим
     distance: (v) =>
         math.sqrt((v.x - self.x)^2 + (v.y - self.y)^2)
+
+    rotate: (r) =>
+        new_x = @x*math.cos(r)-@y*math.sin(r)
+        new_y = @x*math.sin(r)+@y*math.cos(r)
+        return Vector2(new_x, new_y)
     
+    unpack: =>
+        @x, @y
+
+    clone: =>
+        Vector2(@x, @y)
     -- Нормализация вектора
     normalize: =>
-        locLength = self\length()
+        new_vec = Vector2(self.x, self.y)
+        locLength = new_vec\length()
         inv_length = (1 / locLength)
-        @x *= inv_length
-        @y *= inv_length
+        new_vec.x *= inv_length
+        new_vec.y *= inv_length
+        new_vec
 
-{:lerp, :Vector2}
+{:lerp, :Vector2, :aabb, :clamp, :pointOnSegment}

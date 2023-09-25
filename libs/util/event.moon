@@ -29,8 +29,8 @@ EventList = {
 
     textinput: {}
 }
-
 Event = {}
+
 
 Event.on_event = (event_name, callback) ->
     if EventList[event_name] == nil 

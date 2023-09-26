@@ -30,6 +30,8 @@ Event.on_event("draw", ->
         Vector2(-15, 15)\rotate(ang)
     }
 
+
+
     vertex_list = {}
     for k, v in pairs vlist
         vertex_list[#vertex_list + 1] = v.x

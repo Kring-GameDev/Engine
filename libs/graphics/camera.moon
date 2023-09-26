@@ -42,7 +42,6 @@ Camera = class CameraClass
         @Scale  = 1
         @Velocity  = 1
 
-
     -- Сохранение настроек камеры в стек
     push: =>
         @Stack[#@Stack + 1] = {

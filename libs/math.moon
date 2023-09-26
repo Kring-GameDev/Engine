@@ -3,6 +3,7 @@ import Color from require "libs.graphics.color"
 import type from require "libs.type"
 
 class Math
+    -- Сглаживание
     @lerp = (a, b, t) ->
         if type(a) == "Color" and type(b) == "Color"
             return Color(@.lerp(a.r, b.r, t), @.lerp(a.g, b.g, t), @.lerp(a.b, b.b, t), @.lerp(a.a, b.a, t))
@@ -12,11 +13,13 @@ class Math
 
         if type(a) == "number" and type(b) == "number"
             return a * (1 - t) + b * t
-            
+        
+    -- Пересечение точки с прямоугольником
     @aabb = (TargetVector, PositionVector, SizeVector) ->
         PositionVector = PositionVector + SizeVector
         return PositionVector.x > TargetVector.x and PositionVector.x < TargetVector.x + SizeVector.x and PositionVector.y > TargetVector.y and PositionVector.y < TargetVector.y + SizeVector.y
 
+    -- Здать минимальное и максимальное число
     @clamp = (min, val, max) ->
         return val > max and max or val < min and min or val
 
@@ -30,6 +33,7 @@ class Math
         else if u > 1 then u = 1
         return Vector2(FirstVector.x + u * dx, FirstVector.y + u * dy)
 
+    -- Направление угла
     @direction = (t) ->
         Vector2(math.cos(t), -math.sin(t))
 

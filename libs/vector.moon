@@ -6,28 +6,28 @@ class Vector2
     
     -- (+) Сумма
     __add: (v) =>
-        if type(v) == "table"
+        if type(v) == "Vector2"
             Vector2(@x + v.x, @y + v.y)
         elseif type(v) == "number"
             Vector2(@x + v, @y + v)
 
     -- (-) Разность
     __sub: (v) =>
-        if type(v) == "table"
+        if type(v) == "Vector2"
             Vector2(@x - v.x, @y - v.y)
         elseif type(v) == "number"
             Vector2(@x - v, @y - v)
     
     -- (/) Частное
     __div: (v) =>
-        if type(v) == "table"
+        if type(v) == "Vector2"
             Vector2(@x / v.x, @y / v.y)
         elseif type(v) == "number"
             Vector2(@x / v, @y / v)
 
     -- (*) Произведение
     __mul: (v) =>
-        if type(v) == "table"
+        if type(v) == "Vector2"
             Vector2(@x * v.x, @y * v.y)
         elseif type(v) == "number"
             Vector2(@x * v, @y * v)
@@ -92,7 +92,7 @@ class Vector2
         (@x* v.x) + (@y * v.y)
     
     
-    --- Calculate the angle between two points
+    --- Угол между векторами
     angle: (v=Vector2!) =>
         p = Vector2(v.x-@x, v.y-@y)
         math.atan2(p.y, p.x)

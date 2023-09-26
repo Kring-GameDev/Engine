@@ -49,8 +49,9 @@ Frame2.onMouseLeave += (self) ->
 Event.on_event("draw", ->
     Camera\attach!
     user\render!
-    MainFrame\draw!
+    
     Camera\detach!
+    MainFrame\draw!
 )
 
 Event.on_event("update", (dt) ->

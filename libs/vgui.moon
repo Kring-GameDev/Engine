@@ -17,7 +17,6 @@ list = (source={}) ->
             return self
     }
 
-
 pp = {x: 0, y: 0, stack: {}}
 orig_translate = love.graphics.translate
 love.graphics.translate = (TranslateVector) ->

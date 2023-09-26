@@ -15,13 +15,13 @@ class player
     -- Управление игроком  
     contoller: =>
         if (love.keyboard.isDown('w'))
-            @ent.coord.y = @ent.coord.y - 2
+            @ent.coord.y = @ent.coord.y - 20
         if (love.keyboard.isDown('s'))
-            @ent.coord.y = @ent.coord.y + 2
+            @ent.coord.y = @ent.coord.y + 20
         if (love.keyboard.isDown('d'))
-            @ent.coord.x = @ent.coord.x + 2
+            @ent.coord.x = @ent.coord.x + 20
         if (love.keyboard.isDown('a'))
-            @ent.coord.x = @ent.coord.x - 2
+            @ent.coord.x = @ent.coord.x - 20
 
     -- Отрисовка графики
     render: (type = "fill") => 

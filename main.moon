@@ -1,6 +1,10 @@
 import Vector2, pointOnSegment from require "libs.math"
 import Entity from require "libs.graphics.entity"
 import Event, EventList from require "libs.util.event"
+
+
+
+
 Event.init()
 Camera = require "libs.graphics.camera"
 Player = require "libs.graphics.base.player"

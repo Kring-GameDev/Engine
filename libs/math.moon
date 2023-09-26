@@ -23,6 +23,7 @@ class Math
     @clamp = (min, val, max) ->
         return val > max and max or val < min and min or val
 
+    
     @PointOnSegment = (TargetVector, FirstVector, SecondVector) ->
         cx, cy = TargetVector.x - FirstVector.x, TargetVector.y - FirstVector.y
         dx, dy = SecondVector.x - FirstVector.x, SecondVector.y - FirstVector.y

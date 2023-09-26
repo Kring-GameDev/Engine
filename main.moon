@@ -50,8 +50,8 @@ Event.on_event("draw", ->
     Camera\attach!
     user\render!
     
-    Camera\detach!
     MainFrame\draw!
+    Camera\detach!
 )
 
 Event.on_event("update", (dt) ->

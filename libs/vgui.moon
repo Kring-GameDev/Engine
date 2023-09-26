@@ -17,6 +17,7 @@ list = (source={}) ->
             return self
     }
 
+
 pp = {x: 0, y: 0, stack: {}}
 orig_translate = love.graphics.translate
 love.graphics.translate = (TranslateVector) ->
@@ -71,7 +72,7 @@ class Frame
 
         
     update: (dt=1) =>
-        MPos = @_localdata.mouse_position+@pos
+        MPos = @_localdata.mouse_position + @pos
         ab = Math.aabb(MPos, @pos, @size)
 
         for k, v in pairs @onUpdate

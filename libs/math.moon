@@ -6,6 +6,7 @@ aabb = (px, py, x, y, w, h) ->
 clamp = (min, val, max) ->
     val > max and max or val < min and min or val
 --px, py, x1, y1, x2, y2
+Vector2 = {}
 pointOnSegment = (TargetVector, FirstVector, SecondVector) ->
     cx, cy = TargetVector.x - FirstVector.x, TargetVector.y - FirstVector.y
     dx, dy = SecondVector.x - FirstVector.x, SecondVector.y - FirstVector.y
@@ -14,7 +15,7 @@ pointOnSegment = (TargetVector, FirstVector, SecondVector) ->
     u = (cx * dx + cy * dy) / d
     if u < 0 then u = 0
     else if u > 1 then u = 1
-    FirstVector.x + u * dx, FirstVector.y + u * dy
+    Vector2(FirstVector.x + u * dx, FirstVector.y + u * dy)
 
 
 class Vector2
@@ -63,6 +64,7 @@ class Vector2
     -- (-v) Инверсия вектора
     __unm: (v) =>
         Vector2(-@x, -@y)
+
     -- Длинна вектора
     length: =>
         math.sqrt((@x^2) + (@y^2))

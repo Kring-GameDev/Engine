@@ -11,15 +11,20 @@ list = (source) ->
 
 pp = {x: 0, y: 0, stack: {}}
 orig_translate = love.graphics.translate
+
+
 love.graphics.translate = (x, y) ->
     pp.x += x
     pp.y += y
     orig_translate(x, y)
 
+
 orig_push = love.graphics.push
 love.graphics.push = () ->
     pp.stack[#pp.stack + 1] = {x: pp.x, y: pp.y}
     orig_push()
+
+    
 
 orig_pop = love.graphics.pop
 love.graphics.pop = () ->

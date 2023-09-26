@@ -1,14 +1,9 @@
-import Vector2 from require "libs.math"
+import Vector2 from require "libs.vector"
 import Entity from require "libs.graphics.entity"
 
-
-
-
 class physBase 
-
-
     -- Список физических объектов
-    @list_physic_entitys = {}
+    @list_physic_entities = {}
 
     -- Разметка карты
     new: (StartPositionWorld = Vector2(), EndPositionWorld = Vector2(), HeightPixel  = 64) => 
@@ -19,4 +14,4 @@ class physBase
     initialization: =>
         for key, value in pairs Entity.list
             if value.physic 
-                @@list_physic_entitys[#@@list_physic_entitys + 1] = value
+                @@list_physic_entitys[#@@list_physic_entities + 1] = value

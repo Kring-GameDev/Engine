@@ -1,4 +1,5 @@
-import lerp, Vector2, clamp from require "libs.math"
+import Math from require "libs.math"
+import Vector2 from require "libs.vector"
 
 Camera = class CameraClass
     @PositionVector = Vector2! -- Позиция камеры
@@ -29,10 +30,8 @@ Camera = class CameraClass
 
     -- Обработка камеры
     update: (dt=1) =>
-        @PositionVector.x = lerp(@PositionVector.x, @TargetVector.x + @OffsetVector.x, clamp(0, @Velocity * dt, 1))
-        @PositionVector.y = lerp(@PositionVector.y, @TargetVector.y + @OffsetVector.y, clamp(0, @Velocity * dt, 1))
+        @PositionVector = Math.lerp(@PositionVector, @TargetVector + @OffsetVector, Math.clamp(0, @Velocity * dt, 1))
 
-    
     -- Смещение камеры
     setOffset: (OffsetVector) =>
         @OffsetVector = -OffsetVector

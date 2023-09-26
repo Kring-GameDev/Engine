@@ -30,4 +30,7 @@ class Math
         else if u > 1 then u = 1
         return Vector2(FirstVector.x + u * dx, FirstVector.y + u * dy)
 
+    @direction = (t) ->
+        Vector2(math.cos(t), -math.sin(t))
+
 { :Math }

@@ -1,6 +1,6 @@
 class Vector2
     -- Конструктор объекта
-    new: (x = 0, y = 0) =>
+    new: (x = 0, y = x) =>
         @x = x
         @y = y
     
@@ -44,6 +44,14 @@ class Vector2
     __unm: (v) =>
         Vector2(-@x, -@y)
 
+    -- Преобразование в строку
+    __tostring: =>
+        @x .. "," .. @y
+
+    -- Метод преобразования в строку
+    toString: =>
+        @x .. "," .. @y
+
     -- Длинна вектора
     length: =>
         math.sqrt((@x^2) + (@y^2))
@@ -56,7 +64,7 @@ class Vector2
     rotate: (r) =>
         new_x = @x*math.cos(r)-@y*math.sin(r)
         new_y = @x*math.sin(r)+@y*math.cos(r)
-        return Vector2(new_x, new_y)
+        Vector2(new_x, new_y)
     
     -- Вытащить из вектора 'x', 'y' координаты
     unpack: =>
@@ -78,5 +86,16 @@ class Vector2
         new_vec.x *= inv_length
         new_vec.y *= inv_length
         new_vec
+
+    -- Скалярное произведение
+    dot: (v=Vector2!) =>
+        (@x* v.x) + (@y * v.y)
+    
+    
+    --- Calculate the angle between two points
+    angle: (v=Vector2!) =>
+        p = Vector2(v.x-@x, v.y-@y)
+        math.atan2(p.y, p.x)
+    
 
 { :Vector2 }

@@ -1,6 +1,6 @@
 import Math from require "libs.math"
 import Vector2 from require "libs.vector"
-
+import Frame from require "libs.vgui"
 Camera = class CameraClass
     @PositionVector = Vector2! -- Позиция камеры
     @TargetVector   = Vector2! -- Цель камеры
@@ -13,7 +13,7 @@ Camera = class CameraClass
     attach: =>
         love.graphics.push()
         love.graphics.scale(@Scale, @Scale)
-        love.graphics.translate(@PositionVector.x / @Scale, @PositionVector.y / @Scale)
+        love.graphics.translate(Vector2(@PositionVector.x / @Scale, @PositionVector.y / @Scale))
 
     -- Конец блока камеры
     detach: =>
@@ -22,11 +22,6 @@ Camera = class CameraClass
     -- Назначить цель камеры
     lookAt: (TargetVector) =>
         @TargetVector = -TargetVector * @Scale
-
-    -- Получение глобальных координат курсора
-    getMousePosition: =>
-        mx, my = love.mouse.getPosition()
-        Vector2((mx - @PositionVector.x) / @Scale, (my - @PositionVector.y) / @Scale)
 
     -- Обработка камеры
     update: (dt=1) =>

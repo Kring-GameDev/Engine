@@ -6,7 +6,10 @@ abs = math.abs
 
 
 class Color
-    new: (r=1, g=1, b=1, a=a) =>
+    @Random = (r1, r2, g1, g2, b1, b2, a1=1, a2=1) ->
+        Color(math.random(r1, r2 * 255) / 255, math.random(g1, g2 * 255) / 255, math.random(b1, b2 * 255) / 255, math.random(a1, a2 * 255) / 255)
+    
+    new: (r=1, g=1, b=1, a=1) =>
         @r = r
         @g = g
         @b = b
@@ -26,10 +29,10 @@ class Color
 
     -- Получить цвет в формате unsigned byte
     ub: =>
-        Color(@r * 255, @g * 255, @b * 255, @a * 255)
+        Color(@r / 255, @g / 255, @b / 255, @a / 255)
 
     zn: =>
-        Color(@r / 255, @g / 255, @b / 255, @a / 255)
+        Color(@r * 255, @g * 255, @b * 255, @a * 255)
 
     hexToRgb: =>
         rb = tonumber(string.sub(@r, 2, 3), 16) / 255
@@ -82,9 +85,11 @@ orig_setcolor = love.graphics.setColor
 love.graphics.setColor = (r, g, b, a=1) ->
     if type(r) == "number"
         orig_setcolor(r, g, b, a)
+        return
         
     if type(r) == "Color"
         orig_setcolor(r\unpack!)
+        return
         
         
 { :Color }

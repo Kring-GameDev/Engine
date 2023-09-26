@@ -11,7 +11,6 @@ class Entity
         @coord          = coord
         @size           = size
         @physic         = physic
-
         
         @@list[#@@list + 1] = self
 

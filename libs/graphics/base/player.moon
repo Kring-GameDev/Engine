@@ -25,6 +25,9 @@ class Player
     render: (type = "fill") =>
         love.graphics.rectangle(type, @ent.coord.x, @ent.coord.y, @ent.size.x, @ent.size.y)
 
+    physic: =>
+        123
+
     position: =>  
         @ent.coord
     

@@ -1,6 +1,7 @@
 EventList = {
     draw:        {}
     update:      {}
+    load:        {}
     keypressed:  {}
     keyreleased: {}
 
@@ -132,6 +133,10 @@ Event.init = ->
 
     love.textinput = (...) ->
         for k, v in pairs(EventList.textinput)
+            v(...)
+
+    love.load = (...) ->
+        for k, v in pairs(EventList.load)
             v(...)
 
 { :Event, :EventList }

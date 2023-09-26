@@ -1,70 +1,81 @@
-import lerp, Vector2 from require "libs.math"
+import lerp, Vector2, clamp from require "libs.math"
 
-Camera = {PositionVector: Vector2!, TargetVector: Vector2!, OffsetVector: Vector2!, Scale: 1, Velocity: 0.05, mouse: {}, stack: {}}
+Camera = class CameraClass
+    @PositionVector = Vector2! -- Позиция камеры
+    @TargetVector   = Vector2! -- Цель камеры
+    @OffsetVector   = Vector2! -- Смещение камеры от цели
+    @Scale          = 1        -- Масштаб камеры
+    @Velocity       = 1        -- Скорость сближения до цели+смещения
+    @Stack          = {}       -- Стек для сохранения настроек камеры
 
--- Юзать в начале
-Camera.attach = ->
-    love.graphics.push()
-    love.graphics.scale(Camera.Scale, Camera.Scale)
-    love.graphics.translate(Camera.PositionVector.x / Camera.Scale, Camera.PositionVector.y / Camera.Scale)
+    -- Начало блока камеры
+    attach: =>
+        love.graphics.push()
+        love.graphics.scale(@Scale, @Scale)
+        love.graphics.translate(@PositionVector.x / @Scale, @PositionVector.y / @Scale)
+
+    -- Конец блока камеры
+    detach: =>
+        love.graphics.pop()
+
+    -- Назначить цель камеры
+    lookAt: (TargetVector) =>
+        @TargetVector = -TargetVector * @Scale
+
+    -- Получение глобальных координат курсора
+    getMousePosition: =>
+        mx, my = love.mouse.getPosition()
+        Vector2((mx - @PositionVector.x) / @Scale, (my - @PositionVector.y) / @Scale)
+
+    -- Обработка камеры
+    update: (dt=1) =>
+        @PositionVector.x = lerp(@PositionVector.x, @TargetVector.x + @OffsetVector.x, clamp(0, @Velocity * dt, 1))
+        @PositionVector.y = lerp(@PositionVector.y, @TargetVector.y + @OffsetVector.y, clamp(0, @Velocity * dt, 1))
+
     
--- Юзать в конце
-Camera.detach = ->
-    love.graphics.pop()
+    -- Смещение камеры
+    setOffset: (OffsetVector) =>
+        @OffsetVector = -OffsetVector
+
+    -- Стандартные настройки камеры
+    identity: =>
+        @PositionVector.x  = 0
+        @PositionVector.y  = 0 
+        @TargetVector.x = 0
+        @TargetVector.y = 0 
+        @OffsetVector.x = 0
+        @OffsetVector.y = 0
+        @Scale  = 1
+        @Velocity  = 1
 
 
--- Фиксировать камеру к точке
-Camera.lookAt = (x, y) ->
-    Camera.TargetVector.x = -x * Camera.Scale
-    Camera.TargetVector.y = -y * Camera.Scale
+    -- Сохранение настроек камеры в стек
+    push: =>
+        @Stack[#@Stack + 1] = {
+            x:  @PositionVector.x
+            y:  @PositionVector.y
+            tx: @TargetVector.x
+            ty: @TargetVector.y
+            ox: @OffsetVector.x
+            oy: @OffsetVector.y
+            s:  @Scale
+            v:  @Velocity
+        }
 
--- Получение глобальных координат курсора
-Camera.mouse.getPosition = ->
-    mx, my = love.mouse.getPosition()
-    (mx - Camera.PositionVector.x) / Camera.Scale, (my - Camera.PositionVector.y) / Camera.Scale
+    -- Dpznm настройки камеры из стека и применить их
+    pop: =>
+        if #@Stack == 0 then return
+        frame = @Stack[#@Stack]
+        @PositionVector.x  = frame.x
+        @PositionVector.y  = frame.y 
+        @TargetVector.x = frame.tx
+        @TargetVector.y = frame.ty 
+        @OffsetVector.x = frame.ox
+        @OffsetVector.y = frame.oy
+        @Scale  = frame.s
+        @Velocity  = frame.v
 
-Camera.update = ->
-    Camera.PositionVector.x = lerp(Camera.PositionVector.x, Camera.TargetVector.x + Camera.OffsetVector.x, Camera.Velocity)
-    Camera.PositionVector.y = lerp(Camera.PositionVector.y, Camera.TargetVector.y + Camera.OffsetVector.y, Camera.Velocity)
+        table.remove(@Stack, #@Stack)
 
--- Смещение камеры
-Camera.setOffset = (x, y) ->
-    Camera.OffsetVector.x = -x
-    Camera.OffsetVector.y = -y
-
-Camera.identity = ->
-    Camera.PositionVector.x  = 0
-    Camera.PositionVector.y  = 0 
-    Camera.TargetVector.x = 0
-    Camera.TargetVector.y = 0 
-    Camera.OffsetVector.x = 0
-    Camera.OffsetVector.y = 0
-    Camera.Scalecale  = 1
-    Camera.Velocity  = 0.05
-
-Camera.push = ->
-    stack[#stack + 1] = {
-        x:  Camera.PositionVector.x
-        y:  Camera.PositionVector.y
-        tx: Camera.TargetVector.x
-        ty: Camera.TargetVector.y
-        ox: Camera.OffsetVector.x
-        oy: Camera.OffsetVector.y
-        s:  Camera.Scale
-        v:  Camera.Velocity
-    }
-
-Camera.pop = ->
-    frame = stack[#stack]
-    Camera.PositionVector.x  = frame.x
-    Camera.PositionVector.y  = frame.y 
-    Camera.TargetVector.x = frame.tx
-    Camera.TargetVector.y = frame.ty 
-    Camera.OffsetVector.x = frame.ox
-    Camera.OffsetVector.y = frame.oy
-    Camera.Scalecale  = frame.s
-    Camera.Velocity  = frame.v
-
-    table.remove(stack, #stack)
 
 Camera

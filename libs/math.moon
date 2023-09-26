@@ -17,12 +17,8 @@ pointOnSegment = (TargetVector, FirstVector, SecondVector) ->
     FirstVector.x + u * dx, FirstVector.y + u * dy
 
 
-class Vector2 
-    -- Инцилизиация начальных параметров
-    @x = 0
-    @y = 0
-
-    -- Инцилизация объекта
+class Vector2
+    -- Конструктор объекта
     new: (x = 0, y = 0) =>
         @x = x
         @y = y
@@ -56,36 +52,39 @@ class Vector2
         elseif type(v) == "number"
             Vector2(@x * v, @y * v)
     
-    -- (==) Сравнение
+    -- (==) Равенство
     __eq: (v) =>
        (@x == v.x and @y == v.y)
     
-    -- (<) Сравнение меньше
+    -- (</>) меньше/больше
     __lq: (v) =>
        (@x < v.x and @y < v.y)
-    
-    -- (<<) Дистанция
-    __shl: (v) =>
-       math.abs( (@x - v.x) + (@y - v.y) )
 
-    -- Получение длинны
+    -- (-v) Инверсия вектора
+    __unm: (v) =>
+        Vector2(-@x, -@y)
+    -- Длинна вектора
     length: =>
         math.sqrt((@x^2) + (@y^2))
     
-    -- Получение расстояния между этим вектором и следующим
+    -- Расстояние между векторами
     distance: (v) =>
         math.sqrt((v.x - self.x)^2 + (v.y - self.y)^2)
 
+    -- Поворот вектора на угол 'r'
     rotate: (r) =>
         new_x = @x*math.cos(r)-@y*math.sin(r)
         new_y = @x*math.sin(r)+@y*math.cos(r)
         return Vector2(new_x, new_y)
     
+    -- Вытащить из вектора 'x', 'y' координаты
     unpack: =>
         @x, @y
 
+    -- Клонировать вектор без изменений
     clone: =>
         Vector2(@x, @y)
+        
     -- Нормализация вектора
     normalize: =>
         new_vec = Vector2(self.x, self.y)

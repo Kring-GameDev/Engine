@@ -81,6 +81,18 @@ class Color
         if type(v) == "number"
             Color(@r * v, @g * v, @b * v, @a * v)
 
+    setR: (r) =>
+        Color(r, @g, @b, @a)
+
+    setG: (g) =>
+        Color(@r, g, @b, @a)
+
+    setB: (b) =>
+        Color(@r, @g, b, @a)
+
+    setA: (a) =>
+        Color(@r, @g, @b, a)
+
 orig_setcolor = love.graphics.setColor
 love.graphics.setColor = (r, g, b, a=1) ->
     if type(r) == "number"

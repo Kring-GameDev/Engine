@@ -2,14 +2,16 @@ import Vector2 from require "libs.vector"
 
 class Entity 
     @list = {}
+    @id = 0
 
-    new: (coord = Vector2(0, 0), size = Vector2(), physic = false) =>
+    new: (coord = Vector2(0, 0), size = Vector2(), static = false, physicBox = {n: "box", v: {}}) =>
         @coord          = coord
         @size           = size
-        @physic         = physic
-        
-        @@list[#@@list + 1] = self
+        @physicBox      = physicBox
+        @static         = static
 
+        @@list[#@@list + 1] = self
+        @id = #@@list
 
 
 

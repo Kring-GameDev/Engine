@@ -1,6 +1,7 @@
 import Math from require "libs.math"
 import Vector2 from require "libs.vector"
 import Frame from require "libs.vgui"
+
 Camera = class CameraClass
     @PositionVector = Vector2! -- Позиция камеры
     @TargetVector   = Vector2! -- Цель камеры

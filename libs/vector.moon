@@ -1,4 +1,5 @@
 import type from require "libs.type"
+
 class Vector2
     -- Конструктор объекта
     new: (x = 0, y = x) =>

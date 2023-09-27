@@ -5,7 +5,7 @@ import Entity from require "libs.graphics.entity"
 class player
     new: (Coord, Size) =>
         @ent = Entity(Coord, Size, false)
-
+        
     position: => 
         @ent.coord
     
@@ -13,7 +13,7 @@ class player
         @ent.size
 
     -- Управление игроком  
-    contoller: =>
+    update: (dt = 1) =>
         if (love.keyboard.isDown('w'))
             @ent.coord.y = @ent.coord.y - 20
         if (love.keyboard.isDown('s'))
@@ -24,7 +24,7 @@ class player
             @ent.coord.x = @ent.coord.x - 20
 
     -- Отрисовка графики
-    render: (type = "fill") => 
-        love.graphics.rectangle(type, @ent.coord.x, @ent.coord.y, @ent.size.x, @ent.size.y)
+    render: => 
+        love.graphics.rectangle("fill", @ent.coord.x, @ent.coord.y, @ent.size.x, @ent.size.y)
 
 player

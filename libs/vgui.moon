@@ -123,6 +123,34 @@ class Frame
         @_localdata.mouse_position = love.mouse.getPosition!
         love.graphics.pop()
 
+class Label extends Frame
+    @_toString = (tbl) ->
+        ret = ""
+        for k, v in pairs tbl
+            if type(v) == "string"
+                ret ..= v
+        ret
 
+    new: (Pos, Size, Text) =>
+        super(Pos, Size)
+        @_localdata.font_width  = love.graphics.getFont()\getWidth(Label._toString(Text))
+        @_localdata.font_height = love.graphics.getFont()\getHeight(Label._toString(Text))
+        @_localdata.text_obj   = love.graphics.newText( love.graphics.getFont(), Text )
 
-{ :Frame }
+        @onDraw -= 1
+        @onDraw += (self) ->
+            love.graphics.setColor(Color(0, 0, 0))
+            love.graphics.rectangle("fill", 4, 4, self.size.x, self.size.x, 4, 4)
+            love.graphics.setColor((self.clr/255)\setA(1))
+            love.graphics.rectangle("fill", 0, 0, self.size.x, self.size.x, 4, 4)
+
+            love.graphics.setColor(Color(1, 1, 1))
+            love.graphics.draw(@getText!, (-@_localdata.font_width / 2) + @size.x/2, (-@_localdata.font_height / 2) + @size.y/2)
+
+    getText: =>
+        @_localdata.text_obj
+
+    getTextString: =>
+        @_localdata.text
+
+{ :Frame, :Label }

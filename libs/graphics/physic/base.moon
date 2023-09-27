@@ -40,9 +40,10 @@ class physBase
                 when "circle"
                     @@objects[value.id]         = {}
                     @@objects[value.id].body    = love.physics.newBody(@world, value.coord.x/2, (value.coord.x-value.coord.y) / 2, value.static and "static" or "dynamic")
-                    @@objects[value.id].shape   = love.physics.newCircleShape(value.physicBox.r)
+                    @@objects[value.id].shape   = love.physics.newCircleShape(value.physBox.r)
                     @@objects[value.id].fixture = love.physics.newFixture(@@objects[value.id].body, @@objects[value.id].shape) 
                     value.ptr = @@objects[value.id]
-
+                else
+                    error("[physic error] " .. value.physBox.n .. " class not found!")
     update: (dt = 1) =>
         @world\update(dt)

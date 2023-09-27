@@ -5,7 +5,7 @@ import Entity from require "libs.graphics.entity"
 class player
     new: (Coord, Size) =>
         @ent = Entity(Coord, Size, false)
-
+        
         @speed = 500
         @power = 15
 

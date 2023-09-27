@@ -3,8 +3,6 @@ import Entity from require "libs.graphics.entity"
 
 
 class box 
-    
-    
     new: (Coord, Size) =>
         @ent = Entity(Coord, Size, true)
         

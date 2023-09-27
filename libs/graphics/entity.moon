@@ -4,7 +4,7 @@ class Entity
     @list = {}
     @id = 0
 
-    new: (coord = Vector2(0, 0), size = Vector2(), static = false, physicBox = {n: "box", v: {}}) =>
+    new: (coord = Vector2(0, 0), size = Vector2(), static = false, physicBox = {n: "box", v: {}, r: 0}) =>
         @coord          = coord
         @size           = size
         @physicBox      = physicBox

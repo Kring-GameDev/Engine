@@ -1,5 +1,5 @@
 import Vector2 from require "libs.vector"
-import Color from require "libs.graphics.color"
+import Color from require "libs.color"
 import type from require "libs.type"
 
 class Math

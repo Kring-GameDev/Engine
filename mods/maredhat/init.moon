@@ -31,7 +31,7 @@ init = (path) ->
             Rect:       Box(Vector2(0, 0), Vector2(100, 50))
             User:       Player(Vector2(200, 200), Vector2(32, 32))
         }
-        export Physic = Phys(Vector2(), Vector2(2048, 2048)) 
+        export Physic = Phys(Vector2(), Vector2(2048, 2048), 64) 
     )
 
     Event.on_event("draw", ->

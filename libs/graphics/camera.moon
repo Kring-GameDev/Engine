@@ -1,14 +1,15 @@
 import Math from require "libs.math"
 import Vector2 from require "libs.vector"
-import Frame from require "libs.vgui"
+import Frame from require "libs.graphics.vgui"
 
-Camera = class CameraClass
-    @PositionVector = Vector2! -- Позиция камеры
-    @TargetVector   = Vector2! -- Цель камеры
-    @OffsetVector   = Vector2! -- Смещение камеры от цели
-    @Scale          = 1        -- Масштаб камеры
-    @Velocity       = 1        -- Скорость сближения до цели+смещения
-    @Stack          = {}       -- Стек для сохранения настроек камеры
+class Camera
+    new: (Position=Vector2!, Target=Vector2!, Offset=Vector2!, Scale=1, Velocit=1) =>
+        @PositionVector = Vector2! -- Позиция камеры
+        @TargetVector   = Vector2! -- Цель камеры
+        @OffsetVector   = Vector2! -- Смещение камеры от цели
+        @Scale          = 1        -- Масштаб камеры
+        @Velocity       = 1        -- Скорость сближения до цели+смещения
+        @Stack          = {}       -- Стек для сохранения настроек камеры
 
     -- Начало блока камеры
     attach: =>
@@ -73,4 +74,4 @@ Camera = class CameraClass
         table.remove(@Stack, #@Stack)
 
 
-Camera
+{ :Camera }

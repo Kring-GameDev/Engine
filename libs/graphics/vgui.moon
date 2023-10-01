@@ -1,5 +1,5 @@
 import Math from require "libs.math"
-import Color from require "libs.graphics.color"
+import Color from require "libs.color"
 import Vector2 from require "libs.vector"
 
 list = (source={}) ->
@@ -56,8 +56,11 @@ class Frame
 
         @onDraw = list({
             (self) ->
+                love.graphics.setColor(Color(0, 0, 0))
+                love.graphics.rectangle("fill", 4, 4, @size.x, @size.y, 4, 4)
+
                 love.graphics.setColor(Color(32, 32, 48, 255)\ub!)
-                love.graphics.rectangle("fill", 0, 0, @size.x, @size.y)
+                love.graphics.rectangle("fill", 0, 0, @size.x, @size.y, 4, 4)
         })
 
         @children = list!
@@ -136,13 +139,14 @@ class Label extends Frame
         @_localdata.font_width  = love.graphics.getFont()\getWidth(Label._toString(Text))
         @_localdata.font_height = love.graphics.getFont()\getHeight(Label._toString(Text))
         @_localdata.text_obj   = love.graphics.newText( love.graphics.getFont(), Text )
-
+        @_localdata.clr = Color(40, 40, 55, 255)
+        @_localdata.clr_mul = 1
         @onDraw -= 1
         @onDraw += (self) ->
             love.graphics.setColor(Color(0, 0, 0))
-            love.graphics.rectangle("fill", 4, 4, self.size.x, self.size.x, 4, 4)
-            love.graphics.setColor((self.clr/255)\setA(1))
-            love.graphics.rectangle("fill", 0, 0, self.size.x, self.size.x, 4, 4)
+            love.graphics.rectangle("fill", 4, 4, self.size.x, self.size.y, 4, 4)
+            love.graphics.setColor((@_localdata.clr\ub!) * @_localdata.clr_mul)
+            love.graphics.rectangle("fill", 0, 0, self.size.x, self.size.y, 4, 4)
 
             love.graphics.setColor(Color(1, 1, 1))
             love.graphics.draw(@getText!, (-@_localdata.font_width / 2) + @size.x/2, (-@_localdata.font_height / 2) + @size.y/2)

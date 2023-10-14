@@ -1,6 +1,7 @@
 import Math from require "libs.math"
 import Color from require "libs.color"
 import Vector2 from require "libs.vector"
+require "libs.graphics.loveinit"
 
 list = (source={}) ->
     setmetatable source, {
@@ -57,10 +58,10 @@ class Frame
         @onDraw = list({
             (self) ->
                 love.graphics.setColor(Color(0, 0, 0))
-                love.graphics.rectangle("fill", 4, 4, @size.x, @size.y, 4, 4)
+                love.graphics.rectangle("fill", Vector2(4), @size, Vector2(4))
 
                 love.graphics.setColor(Color(32, 32, 48, 255)\ub!)
-                love.graphics.rectangle("fill", 0, 0, @size.x, @size.y, 4, 4)
+                love.graphics.rectangle("fill", Vector2!, @size, Vector2(4))
         })
 
         @children = list!
@@ -144,12 +145,12 @@ class Label extends Frame
         @onDraw -= 1
         @onDraw += (self) ->
             love.graphics.setColor(Color(0, 0, 0))
-            love.graphics.rectangle("fill", 4, 4, self.size.x, self.size.y, 4, 4)
+            love.graphics.rectangle("fill", Vector2(4), @size, Vector2(4))
             love.graphics.setColor((@_localdata.clr\ub!) * @_localdata.clr_mul)
-            love.graphics.rectangle("fill", 0, 0, self.size.x, self.size.y, 4, 4)
+            love.graphics.rectangle("fill", Vector2!, @size, Vector2(4))
 
             love.graphics.setColor(Color(1, 1, 1))
-            love.graphics.draw(@getText!, (-@_localdata.font_width / 2) + @size.x/2, (-@_localdata.font_height / 2) + @size.y/2)
+            love.graphics.draw(@getText!, Vector2((-@_localdata.font_width / 2) + @size.x/2, (-@_localdata.font_height / 2) + @size.y/2))
 
     getText: =>
         @_localdata.text_obj

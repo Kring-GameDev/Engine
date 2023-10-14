@@ -1,6 +1,16 @@
 import type from require "libs.type"
 import Vector2 from require "libs.vector"
 import Angle from require "libs.angle"
+import Color from require "libs.color"
+
+_color = love.graphics.setColor
+love.graphics.setColor = (clr=Color(1,1,1)\zn!) ->
+    if Color.mode == "Z1"
+        _color clr.r, clr.g, clr.b, clr.a
+
+    if Color.mode == "Z255"
+        _color clr.r/255, clr.g/255, clr.b/255, clr.a/255
+    Color.mode = "Z1"
 
 _ellipse = love.graphics.ellipse
 love.graphics.ellipse = (mode, pos, size, seg) ->

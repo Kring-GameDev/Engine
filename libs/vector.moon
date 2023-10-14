@@ -99,5 +99,7 @@ class Vector2
         p = Vector2(v.x-@x, v.y-@y)
         math.atan2(p.y, p.x)
     
+    toAngle: =>
+        @\angle!
 
 { :Vector2 }
